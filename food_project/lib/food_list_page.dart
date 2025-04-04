@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_food_page.dart';
 import 'food_detail_page.dart';
+import 'package:intl/intl.dart';
 
 class FoodListPage extends StatefulWidget {
   const FoodListPage({super.key});
@@ -10,10 +11,13 @@ class FoodListPage extends StatefulWidget {
 }
 
 class _FoodListPageState extends State<FoodListPage> {
+
+
   List<Map<String, String>> foods = [ // 음식 리스트
     {'name': '피자', 'description': '치즈크러스트 기본 탑재 피자예요', 'image': 'assets/pizza.jpg', 'price' : '12000'},
     {'name': '햄버거', 'description': '맛있는 햄버거예요', 'image': 'assets/hamburger.jpg', 'price' : '8000'},
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,7 @@ class _FoodListPageState extends State<FoodListPage> {
                                       ),
                                       const SizedBox(height: 8),
                                       Text(
-                                        '₩ ${food['price']}',
+                                        '₩ ${NumberFormat('#,###').format(int.parse(food['price']!))}', // 세 자리마다 콤마 추가
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
